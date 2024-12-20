@@ -11,9 +11,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut messages: Vec<Message> = Vec::new();
 
-    println!("AI Chatbot. Ketik 'exit' untuk keluar.");
+    println!("type 'exit' untuk keluar.");
     loop {
-        print!("You: ");
+        print!("\x1b[32mYou: \x1b[0m");
         io::stdout().flush()?;
         let mut input = String::new();
         io::stdin().read_line(&mut input)?;
@@ -30,7 +30,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         match send_chat_request(messages.clone()).await {
             Ok(reply) => {
-                println!("Megumin: {}", reply);
+                println!("\x1b[31mMegumin:\x1b[0m {}", reply);
 
                 messages.push(Message {
                     role: "assistant".to_string(),
